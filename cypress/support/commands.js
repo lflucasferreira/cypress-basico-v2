@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('fillMandatoryFieldsAndSubmit', function () {
+    const longText = 'Preciso abrir uma reclamação sobre o funcionário que não soube realizar o atendimento na loja parafernalha no dia 15 de janeiro de 2020.'
+    cy.get('#firstName')
+        .type('João')
+    cy.get('#lastName')
+        .type('Batista')
+    cy.get('#email')
+        .type('joaobatista@gmail.com')
+    cy.get('#open-text-area')
+        .type(longText, { delay: 0 })
+    cy.contains('button', 'Enviar')
+        .click()
+})
